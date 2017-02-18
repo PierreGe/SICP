@@ -1,0 +1,9 @@
+(+ 1 1)
+(define p1 (new-process (lambda (input input2) (+ 1 1) (set! input (transfer p2 (+ input 1) input2)) (set! input (+ input 3)) (+ input input2) )))
+(define p2 (new-process (lambda (input input2) (+ 1 1) (set! input (transfer p3 (+ input 1) input2)) (set! input (+ input 11)) input )))
+(define p3 (new-process (lambda (input input2) (+ 1 1) (set! input (transfer p1 (+ input 1) input2)) (set! input (+ input 23)) input )))
+(transfer p1 0 5000)
+(exit)
+
+;; It returns the last value of the process.
+;; If you transfer to a process that have finished already it just returns the input

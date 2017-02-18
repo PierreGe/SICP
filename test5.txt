@@ -1,0 +1,4 @@
+(define simple-lambda (lambda (input) (+  6 input)))
+(define p1 (new-process simple-lambda))
+(display (transfer p1 21))
+(exit)
